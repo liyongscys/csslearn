@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .eContainer {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .nav-tabs > li {
+            position: relative;
+        }
+
+        .nav-tabs > li > a {
+            display: inline-block;
+        }
+
+        .nav-tabs > li > span {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            right: 6px;
+            top: 8px;
+            color: red;
+        }
+
+        .nav-tabs > li:hover > span {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Tabs</h1>
+<div class="eContainer">
+    <div class="container">
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+                    <span>x</span>
+                </li>
+                <li role="presentation">
+                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+                    <span>x</span>
+                </li>
+                <li role="presentation">
+                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+                    <span>x</span>
+                </li>
+                <li role="presentation">
+                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+                    <span>x</span>
+                </li>
+                <li><a href="" class="addTab" aria-controls="add" role="tab" data-toggle="tab">+</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">...</div>
+                <div role="tabpanel" class="tab-pane" id="profile">...</div>
+                <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                <div role="tabpanel" class="tab-pane" id="settings">...</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".nav-tabs").on("click", "a", function (e) {
+                    e.preventDefault();
+                    $(this).tab('show');
+                })
+                .on("click", "span", function () {
+                    var anchor = $(this).siblings('a');
+                    $(anchor.attr('href')).remove();
+                    $(this).parent().remove();
+                    $(".nav-tabs li").children('a').first().click();
+                });
+
+        $('.addTab').click(function (e) {
+            e.preventDefault();
+            var id = $(".nav-tabs").children().length; //think about it ;)
+            $(this).closest('li').before('<li><a href="#contact_' + id + '">New Tab</a><span>x</span></li>');
+            $('.tab-content').append('<div class="tab-pane" id="contact_' + id + '">Contact Form: New Contact ' + id + '</div>');
+        });
+    });
+
+</script>
+</body>
+
+</html>
